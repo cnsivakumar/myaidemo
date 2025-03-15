@@ -1,1 +1,4 @@
 azure-functions
+azure-durable-functions
+requests
+azure-storage-blob

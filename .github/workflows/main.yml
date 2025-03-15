@@ -32,3 +32,9 @@ jobs:
         with:
           app-name: "myaiazf02"  # Change this to your Azure Function App name
           package: "./backend"
+      
+      - name: Sync Function Triggers
+        run: az functionapp sync-function-triggers --name myaiazf02 --resource-group aidemorg
+
+      - name: Restart Function App
+        run: az functionapp restart --name myaiazf02 --resource-group aidemorg
