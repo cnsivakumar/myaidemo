@@ -13,4 +13,4 @@ def main(name: str) -> str:
     if response.get("lastResult") and response["lastResult"].get("status") == "success":
         return "success"
     
-    return "in_progress"
+    return "in_progress.."
