@@ -34,7 +34,7 @@ def fetch_relevant_tickets(user_query):
     formatted_results = "\n\n".join(
         [f"- {result['summary']}: {result['description']}" for result in results]
     )
-    return formatted_results or "No relevant tickets found."
+    return formatted_results or "No relevant tickets found!."
 
 # Function to Generate Answer Using Azure OpenAI
 def generate_response(user_query):
