@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Ticket Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Ticket Assistant</h1>
+    <p>Enter your question below:</p>
+    
+    <input type="text" id="questionInput" placeholder="Ask a question...">
+    <button onclick="askQuestion()">Submit</button>
+
+    <div id="response"></div>
+
+    <script>
+        async function askQuestion() {
+            const question = document.getElementById("questionInput").value;
+            if (!question) {
+                alert("Please enter a question!");
+                return;
+            }
+
+            document.getElementById("response").innerHTML = "Thinking... 🤔";
+
+            const response = await fetch("http://localhost:8000/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            });
+
+            const data = await response.json();
+            document.getElementById("response").innerHTML = `<strong>Answer:</strong> ${data.answer}`;
+        }
+    </script>
+</body>
+</html>
