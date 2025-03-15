@@ -6,7 +6,7 @@ on:
       - master  # Deploys when code is pushed to main branch
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'myaiazf02'   # set this to your function app name on Azure
+  AZURE_FUNCTIONAPP_NAME: 'myaifuncapp'   # set this to your function app name on Azure
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './backend/BlobTrigger2'       # set this to the path to your function app project, defaults to the repository root
   PYTHON_VERSION: '3.11' 
 
