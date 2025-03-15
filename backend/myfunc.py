@@ -8,7 +8,7 @@ from azure.storage.blob import BlobServiceClient
 
 app = func.FunctionApp()
 
-### 📌 1. Blob Trigger Function (Detects New Data) ###
+### 1. Blob Trigger Function (Detects New Data) ###
 @app.function_name("BlobTriggerFunction")
 @app.blob_trigger(arg_name="blob",
                   path="my-container/{name}",
@@ -17,7 +17,7 @@ def blob_trigger_function(blob: func.InputStream):
     logging.info(f"New blob detected: {blob.name}")
     return f"Blob {blob.name} processed."
 
-### 📌 2. Orchestrator Function (Manages Workflow) ###
+### 2. Orchestrator Function (Manages Workflow) ###
 @app.function_name("OrchestratorFunction")
 @app.durable_function()
 def orchestrator_function(context: df.DurableOrchestrationContext):
@@ -28,7 +28,7 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     
     return result
 
-### 📌 3. Activity Function (Check Indexer Status) ###
+### 3. Activity Function (Check Indexer Status) ###
 @app.function_name("ActivityFunction")
 @app.durable_activity_trigger(input_name="input_data")
 def activity_function(input_data: dict):
@@ -45,7 +45,7 @@ def activity_function(input_data: dict):
         logging.error(f"Failed to get indexer status: {response.text}")
         return {"error": "Failed to retrieve indexer status"}
 
-### 📌 4. Durable Function Starter (HTTP Trigger) ###
+### 4. Durable Function Starter (HTTP Trigger) ###
 @app.function_name("DurableFunctionStarter")
 @app.route(route="start")
 @app.durable_client_input(client_name="client")
